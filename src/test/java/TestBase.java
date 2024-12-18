@@ -3,9 +3,6 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
-    static final String issueName = "с днем археолога!";
-    static final String repoPath = "eroshenkoam/allure-example";
-
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";

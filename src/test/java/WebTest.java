@@ -24,46 +24,46 @@ public class WebTest extends TestBase {
         $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
         $("#query-builder-test").submit();
 
-        $(linkText(repoPath)).click();
+        $(linkText("eroshenkoam/allure-example")).click();
         $("#issues-tab").click();
-        $(withText(issueName)).shouldBe(Condition.exist);
+        $(withText("с днем археолога!")).shouldBe(Condition.exist);
     }
 
-    @DisplayName("Проверка названия ишью с помощью Лямбда шагов")
+    @DisplayName("Проверка названия с помощью Лямбда шагов")
     @Test
     void lambdaIssueNameTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открыть главную страницу гитхаб", () -> {
             open("");
         });
-        step("Найти репозиторий " + repoPath, () -> {
+        step("Найти репозиторий " + "eroshenkoam/allure-example", () -> {
             $(".header-search-button").click();
-            $("#query-builder-test").sendKeys(repoPath);
+            $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
             $("#query-builder-test").submit();
         });
-        step("Кликнуть по ссылке репозитория " + repoPath, () -> {
-            $(linkText(repoPath)).click();
+        step("Кликнуть по ссылке репозитория " + "eroshenkoam/allure-example", () -> {
+            $(linkText("eroshenkoam/allure-example")).click();
         });
         step("Открыть таб Issues", () -> {
             $("#issues-tab").click();
         });
-        step("Проверить наличие Issue с именем " + issueName, () -> {
-            $(withText(issueName)).should(Condition.exist);
+        step("Проверить наличие Issue с именем " + "с днем археолога!", () -> {
+            $(withText("с днем археолога!")).should(Condition.exist);
         });
 
     }
 
-    @DisplayName("Проверка названия ишью с помощью шагов с аннотацией")
+    @DisplayName("Проверка названия с помощью шагов с аннотацией")
     @Test
     void annotationIssueNameTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
 
         steps.openMainPage();
-        steps.searchForRepository(repoPath);
-        steps.clickOnRepositoryLink(repoPath);
+        steps.searchForRepository("eroshenkoam/allure-example");
+        steps.clickOnRepositoryLink("eroshenkoam/allure-example");
         steps.openIssuesTab();
-        steps.shouldSeeIssueWithNumber(issueName);
+        steps.shouldSeeIssueWithNumber("с днем археолога!");
 
     }
 }
