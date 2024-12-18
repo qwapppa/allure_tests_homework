@@ -11,8 +11,6 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
         Configuration.browserSize = "2560x1600";
         Configuration.baseUrl = "https://github.com/";
-        Configuration.holdBrowserOpen = false;
-
 
     }
 
