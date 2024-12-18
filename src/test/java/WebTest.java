@@ -13,6 +13,9 @@ import static org.openqa.selenium.By.linkText;
 
 public class WebTest extends TestBase {
 
+    static final String issueName = "с днем археолога!";
+    static final String repoPath = "eroshenkoam/allure-example";
+
     @DisplayName("Проверка c помощью Listener")
     @Test
     void selenideIssueNameTest() {
@@ -21,12 +24,12 @@ public class WebTest extends TestBase {
         open("");
 
         $(".header-search-button").click();
-        $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
+        $("#query-builder-test").sendKeys(repoPath);
         $("#query-builder-test").submit();
 
-        $(linkText("eroshenkoam/allure-example")).click();
+        $(linkText(repoPath)).click();
         $("#issues-tab").click();
-        $(withText("с днем археолога!")).shouldBe(Condition.exist);
+        $(withText(issueName)).shouldBe(Condition.exist);
     }
 
     @DisplayName("Проверка названия с помощью Лямбда шагов")
@@ -36,19 +39,19 @@ public class WebTest extends TestBase {
         step("Открыть главную страницу гитхаб", () -> {
             open("");
         });
-        step("Найти репозиторий " + "eroshenkoam/allure-example", () -> {
+        step("Найти репозиторий " + repoPath, () -> {
             $(".header-search-button").click();
-            $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
+            $("#query-builder-test").sendKeys(repoPath);
             $("#query-builder-test").submit();
         });
-        step("Кликнуть по ссылке репозитория " + "eroshenkoam/allure-example", () -> {
-            $(linkText("eroshenkoam/allure-example")).click();
+        step("Кликнуть по ссылке репозитория " + repoPath, () -> {
+            $(linkText(repoPath)).click();
         });
         step("Открыть таб Issues", () -> {
             $("#issues-tab").click();
         });
-        step("Проверить наличие Issue с именем " + "с днем археолога!", () -> {
-            $(withText("с днем археолога!")).should(Condition.exist);
+        step("Проверить наличие Issue с именем " + issueName, () -> {
+            $(withText(issueName)).should(Condition.exist);
         });
 
     }
@@ -60,10 +63,10 @@ public class WebTest extends TestBase {
         WebSteps steps = new WebSteps();
 
         steps.openMainPage();
-        steps.searchForRepository("eroshenkoam/allure-example");
-        steps.clickOnRepositoryLink("eroshenkoam/allure-example");
+        steps.searchForRepository(repoPath);
+        steps.clickOnRepositoryLink(repoPath);
         steps.openIssuesTab();
-        steps.shouldSeeIssueWithNumber("с днем археолога!");
+        steps.shouldSeeIssueWithNumber(issueName);
 
     }
 }
