@@ -7,15 +7,18 @@ repositories {
     mavenCentral()
 }
 
-allure {
-    report {
-        version.set("2.19.0")
+def allureVersion = "2.21.0",
+    selenideVersion = "6.19.1"
+
+    allure {
+        report {
+        version.set(allureVersion)
     }
     adapter {
-        aspectjWeaver.set(true) //обработка аннотации
+        aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set("2.19.0")
+                adapterVersion.set(allureVersion)
             }
         }
     }
